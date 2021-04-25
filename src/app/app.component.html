@@ -1,0 +1,161 @@
+<h2>Angular Reactive Form</h2>
+<form [formGroup]="signupForm" (ngSubmit)="PostData()" class="form">
+  <div class="form-group">
+    <label>
+      FirstName
+      <br /><br />
+      <input type="text" [class.is-invalid]="
+          signupForm.get('fname').invalid && signupForm.get('fname').touched
+        " name="fname" formControlName="fname" placeholder="fname" class="form-control" />
+      <div *ngIf="
+          signupForm.get('fname').invalid && signupForm.get('fname').touched
+        ">
+        <small *ngIf="signupForm.get('fname').errors?.required" class="text-danger">fname is required</small>
+        <small *ngIf="signupForm.get('fname').errors?.pattern" class="text-danger">only alphabets are allowed</small>
+
+        <small *ngIf="signupForm.get('fname').errors?.minlength" class="text-danger">fname must contain be least 5
+          chars</small>
+
+      </div>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      LastName
+      <br /><br />
+      <input type="text" [class.is-invalid]="
+          signupForm.get('lname').invalid && signupForm.get('lname').touched
+        " name="lname" formControlName="lname" placeholder="lname" class="form-control" />
+      <div *ngIf="
+          signupForm.get('lname').invalid && signupForm.get('lname').touched
+        ">
+        <small *ngIf="signupForm.get('lname').errors?.required" class="text-danger">lname is required</small>
+        <small *ngIf="signupForm.get('lname').errors?.pattern" class="text-danger">only alphabets are allowed</small>
+
+        <small *ngIf="signupForm.get('lname').errors?.minlength" class="text-danger">lname must contain be least 5
+          chars</small>
+      </div>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Email
+      <br /><br />
+
+      <input type="text" [class.is-invalid]="
+          signupForm.get('EmailId').invalid && signupForm.get('EmailId').touched
+        " name="EmailId" formControlName="EmailId" placeholder="email" class="form-control" />
+      <div *ngIf="
+          signupForm.get('EmailId').invalid && signupForm.get('EmailId').touched
+        ">
+        <small *ngIf="signupForm.get('EmailId').errors?.required" class="text-danger">EmailId is required</small>
+        <small *ngIf="signupForm.get('EmailId').errors?.email" class="text-danger">EmailId must be email type</small>
+      </div>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Password
+      <br /><br />
+
+      <input type="text" [class.is-invalid]="
+          signupForm.get('Password').invalid &&
+          signupForm.get('Password').touched
+        " name="Password" formControlName="Password" placeholder="Password" class="form-control" />
+      <div *ngIf="
+          signupForm.get('Password').invalid &&
+          signupForm.get('Password').touched
+        ">
+        <small *ngIf="signupForm.get('Password').errors?.required" class="text-danger">Password is required</small>
+        <small *ngIf="signupForm.get('Password').errors?.pattern" class="text-danger"> Must be Strong Password</small>
+      </div>
+    </label>
+  </div>
+
+  <div formGroupName="address">
+    <div class="form-group">
+      <label>
+        Address Line 1
+        <br /><br />
+
+        <input type="text" [class.is-invalid]="
+            signupForm.get('address').get('address1').invalid &&
+            signupForm.get('address').get('address1').touched
+          " name="address1" formControlName="address1" placeholder="address1" class="form-control" />
+        <div *ngIf="
+            signupForm.get('address').get('address1').invalid &&
+            signupForm.get('address').get('address1').touched
+          ">
+          <small *ngIf="signupForm.get('address').get('address1').errors?.required" class="text-danger">address is
+            required</small>
+          <small *ngIf="signupForm.get('address').get('address1').errors?.minlength" class="text-danger">address must
+            contain be least
+            5 chars</small>
+        </div>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Address Line 2
+        <br /><br />
+
+        <input type="text" [class.is-invalid]="
+            signupForm.get('address').get('address2').invalid &&
+            signupForm.get('address').get('address2').touched
+          " name="address2" formControlName="address2" placeholder="address2" class="form-control" />
+        <div *ngIf="
+            signupForm.get('address').get('address2').invalid &&
+            signupForm.get('address').get('address2').touched
+          ">
+          <small *ngIf="signupForm.get('address').get('address2').errors?.required" class="text-danger">address line 2 is
+            required</small>
+          <small *ngIf="signupForm.get('address').get('address2').errors?.minlength" class="text-danger">address must
+            contain be least
+            5 chars</small>
+        </div>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        State
+        <br /><br />
+
+        <input [class.is-invalid]="
+            signupForm.get('address').get('state').invalid && signupForm.get('address').get('state').touched
+          " name="state" formControlName="state" placeholder="state" class="form-control" />
+        <div *ngIf="
+            signupForm.get('address').get('state').invalid && signupForm.get('address').get('state').touched
+          ">
+          <small *ngIf="signupForm.get('address').get('state').errors?.required" class="text-danger">state is
+            required</small>
+          <small *ngIf="signupForm.get('address').get('state').errors?.minlength" class="text-danger">must be at least 3
+            chars</small>
+            <small *ngIf="signupForm.get('address').get('state').errors?.pattern" class="text-danger"> only alphabets are allowed</small>
+        </div>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        Zip
+        <br /><br />
+
+        <input type="text" [class.is-invalid]="
+            signupForm.get('address').get('zip').invalid && signupForm.get('address').get('zip').touched
+          " name="zip" formControlName="zip" placeholder="zip" class="form-control" />
+        <div *ngIf="signupForm.get('address').get('zip').invalid && signupForm.get('address').get('zip').touched">
+          <small *ngIf="signupForm.get('address').get('zip').errors?.required" class="text-danger">zip is
+            required</small>
+          <small *ngIf="signupForm.get('address').get('zip').errors?.pattern" class="text-danger">zip is invalid
+          </small>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!signupForm.valid">Submit</button>
+  <!-- </div> -->
+</form>
