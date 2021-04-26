@@ -37,20 +37,20 @@ export class AppComponent {
 
 
   PostData() {
-    // this.http.post('https://jsonplaceholder.typicode.com/posts', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     title: 'foo',
-    //     body: this.signupForm.value,
-    //     userId: 1,
-    //   }),
-    //   headers: {
-    //     'Content-type': 'application/json; charset=UTF-8',
-    //   },
-    // })
-    //   .subscribe(res => {
-    //     console.log(res);
-    //   })
+    this.http.post('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: 'foo',
+        body: this.signupForm.value,
+        userId: 1,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .subscribe(res => {
+        console.log(res);
+      })
     // // this.FirstName= signupForm.controls.fname.value;
     // this.LastName= signupForm.controls.lname.value;
     // this.Email= signupForm.controls.EmailId.value;
