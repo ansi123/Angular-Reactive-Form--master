@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms'
+import { FormGroup, FormControl, FormBuilder, Validators, NgForm,FormArray } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import "bootstrap/dist/css/bootstrap.css"
@@ -16,7 +16,18 @@ export class AppComponent {
   LastName: string = '';
   Email: string = '';
   Password: string = '';
-
+  get alternateEmails()
+  {
+      return this.signupForm.get('alternateEmails') as FormArray;
+  }
+  get email()
+  {
+      return this.signupForm.get('EmailId');
+  }
+  addAlternateEmails()
+  {
+    this.alternateEmails.push(this.fb.control(''))
+  }
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.signupForm = fb.group({
       fname: ['', [Validators.required, Validators.pattern("^[a-zA-Z]*"),Validators.minLength(5) ]],
@@ -30,7 +41,8 @@ export class AppComponent {
         zip: ['', [Validators.required, Validators.pattern("^[0-9]{6}")]]
 
 
-      })
+      }),
+      alternateEmails:this.fb.array([])
     });
 
   }
