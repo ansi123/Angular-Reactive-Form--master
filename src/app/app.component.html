@@ -41,16 +41,30 @@
   <div class="form-group">
     <label>
       Email
-      <br /><br />
+      <button type="button" class='btn btn-secondary btn-sm m-2' (click)='addAlternateEmails()'>Add Alternate
+        Email</button>
+      <br /> <br />
 
-      <input type="text" [class.is-invalid]="
-          signupForm.get('EmailId').invalid && signupForm.get('EmailId').touched
+
+      <input [class.is-invalid]="
+          email.invalid && email.touched
         " name="EmailId" formControlName="EmailId" placeholder="email" class="form-control" />
       <div *ngIf="
-          signupForm.get('EmailId').invalid && signupForm.get('EmailId').touched
+          email.invalid && email.touched
         ">
-        <small *ngIf="signupForm.get('EmailId').errors?.required" class="text-danger">EmailId is required</small>
-        <small *ngIf="signupForm.get('EmailId').errors?.email" class="text-danger">EmailId must be email type</small>
+        <small *ngIf="email.errors?.required" class="text-danger">EmailId is required</small>
+        <small *ngIf="email.errors?.email" class="text-danger">EmailId must be email type</small>
+      </div>
+      <div formArrayName='alternateEmails' *ngFor="let email of alternateEmails.controls; let i=index">
+        <input type='text' [formControlName]='i' class="form-control my-1" placeholder="Alternate Email" name="EmailId"
+          [class.is-invalid]="
+        email.invalid && email.touched" />
+        <div *ngIf="
+        email.invalid && email.touched
+      ">
+          <small *ngIf="email.errors?.required" class="text-danger">EmailId is required</small>
+          <small *ngIf="email.errors?.email" class="text-danger">EmailId must be email type</small>
+        </div>
       </div>
     </label>
   </div>
@@ -91,7 +105,7 @@
           <small *ngIf="signupForm.get('address').get('address1').errors?.required" class="text-danger">address is
             required</small>
           <small *ngIf="signupForm.get('address').get('address1').errors?.minlength" class="text-danger">address must
-            contain  least
+            contain least
             5 chars</small>
         </div>
       </label>
@@ -110,10 +124,11 @@
             signupForm.get('address').get('address2').invalid &&
             signupForm.get('address').get('address2').touched
           ">
-          <small *ngIf="signupForm.get('address').get('address2').errors?.required" class="text-danger">address line 2 is
+          <small *ngIf="signupForm.get('address').get('address2').errors?.required" class="text-danger">address line 2
+            is
             required</small>
           <small *ngIf="signupForm.get('address').get('address2').errors?.minlength" class="text-danger">address must
-            contain  least
+            contain least
             5 chars</small>
         </div>
       </label>
@@ -134,7 +149,8 @@
             required</small>
           <small *ngIf="signupForm.get('address').get('state').errors?.minlength" class="text-danger">must be at least 3
             chars</small>
-            <small *ngIf="signupForm.get('address').get('state').errors?.pattern" class="text-danger"> only alphabets are allowed</small>
+          <small *ngIf="signupForm.get('address').get('state').errors?.pattern" class="text-danger"> only alphabets are
+            allowed</small>
         </div>
       </label>
     </div>
